@@ -7,15 +7,20 @@ using UnityEngine.UI;
 
 public class MagicNumber : MonoBehaviour
 {
+    #region Variables
+
     public Text answer;
-    public Text count;
-    public Text endGame;
+    public Text result;
     public int min = 1;
     public SceneLoader sceneLoader;
     public int max = 1000;
-    private int i = 0;
+    public int count = 0;
     public bool isPlay = true;
-    private int guess;
+    public int guess;
+
+    #endregion
+
+    #region Methods
 
     private void Awake()
     {
@@ -25,38 +30,13 @@ public class MagicNumber : MonoBehaviour
     void Start()
     {
         answer.text = "Загадайте число от " + min +" до " + max;
-        
-        endGame.text = "";
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isPlay)
         {
             return;
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            min = guess;
-            UpdateGuess();
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            max = guess;
-            UpdateGuess();
-        }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
-        {
-            GameOver();
-        }
-
-        if (Input.GetKeyDown((KeyCode.Space)))
-        {
-            restartGame();
-            Start();
         }
     }
 
@@ -64,16 +44,9 @@ public class MagicNumber : MonoBehaviour
     {
         guess = (min + max) / 2;
         answer.text = "Это число вы загадывали? " + guess + "?";
-        i++;
+        count++;
     }
-
-    private void restartGame()
-    {
-        min = 1;
-        max = 1000;
-        i = 0;
-    }
-
+    
     private void GameOver()
     {
         isPlay = false;
@@ -93,7 +66,9 @@ public class MagicNumber : MonoBehaviour
 
     public void ConfirmButton()
     {
+        result.text = $"Ваш загаданный номер: {guess}";
         GameOver();
-        //sceneLoader.ChangeScene(2);
     }
+
+    #endregion
 }
