@@ -24,13 +24,13 @@ public class MagicNumber : MonoBehaviour
 
     private void Awake()
     {
+        guess = max;
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
         answer.text = "Загадайте число от " + min +" до " + max;
-        guess = (min + max) / 2;
     }
 
     private void UpdateGuess()
