@@ -18,6 +18,7 @@ public class GameOverView : MonoBehaviour
         MagicNumber magicNumber = FindObjectOfType<MagicNumber>();
         turnCount.text = $"Затрачено поппыток на угадывание: {magicNumber.count}";
         rememberNumber.text = $"Вы загадали: {magicNumber.guess}";
+        Destroy(magicNumber);
     }
     #endregion
 }

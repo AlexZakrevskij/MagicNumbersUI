@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MagicNumber : MonoBehaviour
 {
     #region Variables
-
+  
     public Text answer;
     public Text result;
     public int min = 1;
@@ -27,17 +27,10 @@ public class MagicNumber : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
         answer.text = "Загадайте число от " + min +" до " + max;
-    }
-
-    void Update()
-    {
-        if (!isPlay)
-        {
-            return;
-        }
+        guess = (min + max) / 2;
     }
 
     private void UpdateGuess()
